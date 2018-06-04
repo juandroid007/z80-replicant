@@ -1,5 +1,5 @@
 #include "opcodes.h"
-
+#include "cpu.h"
 /*
 Extrae los trozos de un opcode a partir del opcode tal cual que
 se haya sacado de la memoria. Aplica una serie de máscaras de
@@ -19,23 +19,38 @@ void extract_opcode(char opcode, struct opcode_t* opstruct) {
 	opstruct -> q = opstruct -> y & 1;
 }
 
+typedef void(*table_function)(struct cpu_t*, struct opcode_t);
+
+static void execute_table0(struct cpu_t* cpu, struct opcode_t* opstruct) {
+
+}
+
+static void execute_table1(struct cpu_t* cpu, struct opcode_t* opstruct) {
+	
+}
+
+static void execute_table2(struct cpu_t* cpu, struct opcode_t* opstruct) {
+	
+}
+
+static void execute_table3(struct cpu_t* cpu, struct opcode_t* opstruct) {
+	
+}
+
+static table_function tables[] = {
+	&execute_table0, &execute_table1, &execute_table2, &execute_table3
+}
+
 void execute_opcode(struct cpu_t* cpu) {
 	//Extraer opcode
-	struct opsctruct opdata;
-	byte opcode = cpu -> mem[cpu -> pc.WORD++]:
+	struct opcode_t opdata;
+	byte opcode = cpu -> mem[cpu -> pc.WORD++];
 	extract_opcode(opcode, &opdata);
 
 
 	//Procesar opcode
-	if (z == 0) {
-		execute_table0(cpu, &opdata);
-	}
-	else if (z == 1) {
-		execute_table1(cpu, &opdata);
-	}
-	else if (z == 2) {
-		execute_table2(cpu, &opdata);
-	}
+	table_function table = tables[(int) opdata.z];
+	(table)(cpu, opdata);
 
 	//Otras tareas
 }

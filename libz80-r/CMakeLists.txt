@@ -6,4 +6,6 @@ add_library(libz80-r STATIC
 	types.h
 )
 
-target_include_directories(z80-replicant PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(libz80-r PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+

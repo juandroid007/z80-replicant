@@ -29,7 +29,7 @@ union register_t {
 	struct {
 		byte L, H;
 	} BYTES;
-}
+};
 
 /*
 Banco de registros. El Z80 tiene varios bancos de registros y
