@@ -50,7 +50,8 @@ void execute_opcode(struct cpu_t* cpu) {
 
 	//Procesar opcode
 	table_function table = tables[(int) opdata.z];
-	(table)(cpu, opdata);
+	(table)(cpu, opdata); //(table)(cpu, &opdata);
+
 
 	//Otras tareas
 }
